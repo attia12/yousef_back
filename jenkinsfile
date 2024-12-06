@@ -14,32 +14,33 @@ pipeline {
                 sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
+         stage("MOCKITO") {
+                      steps {
 
-        stage("MOCKITO") {
-            steps {
-                sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
-            }
-        }
+                        sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
+                      }
+                    }
+         stage('SonarQube') {
+                     steps {
 
-        stage('SonarQube') {
-            steps {
-                // Provide SonarQube authentication using the provided token
-                withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
-                }
-            }
-        }
+                         // Provide SonarQube authentication using the provided token
+                         withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
+                             sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
 
-        stage('Publish Artifacts to Nexus') {
-            steps {
-               script {
-                                            sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.1.17:8081/repository/spring/'
-                                        }
-        }
+                          }
+                     }
+                 }
+             stage('Publish Artifacts to Nexus') {
+                           steps {
 
+                                   script {
+                                       sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.1.17:8081/repository/spring/'
+                                   }
 
-
+                           }
+               }
 
 
     }
+
 }
