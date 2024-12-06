@@ -20,6 +20,16 @@ pipeline {
                         sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
                       }
                     }
+         stage('SonarQube') {
+                     steps {
+
+                         // Provide SonarQube authentication using the provided token
+                         withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
+                             sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+
+                          }
+                     }
+                 }
 
     }
 
