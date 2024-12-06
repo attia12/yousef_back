@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Récupération du code de la branche') {
+            steps {
+                git branch: 'master', url: 'https://github.com/attia12/yousef_back.git'
+            }
+        }
+
+        stage("MAVEN BUILD") {
+          steps {
+            dir('backoffice') {
+
+            sh 'mvn clean install -Dmaven.test.skip=true'
+                              }
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
