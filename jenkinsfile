@@ -14,33 +14,31 @@ pipeline {
                 sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
-         stage("MOCKITO") {
-                      steps {
 
-                        sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
-                      }
+        stage("MOCKITO") {
+            steps {
+                sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
+            }
+        }
+
+        stage('SonarQube') {
+            steps {
+                withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                }
+            }
+        }
+
+        stage('Publish Artifacts to Nexus') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'nexuss', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
+                        // Utilisation des informations d'identification pour se connecter à Nexus
+                        sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.1.17:8081/repository/spring/ -Dusername=$NEXUS_USER -Dpassword=$NEXUS_PASSWORD'
                     }
-         stage('SonarQube') {
-                     steps {
-
-                         // Provide SonarQube authentication using the provided token
-                         withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
-                             sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
-
-                          }
-                     }
-                 }
-             stage('Publish Artifacts to Nexus') {
-                           steps {
-
-                                   script {
-                                       sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.1.17:8081/repository/spring/'
-                                   }
-
-                           }
-               }
-
+                }
+            }
+        }
 
     }
-
 }
