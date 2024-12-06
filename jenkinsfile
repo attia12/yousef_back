@@ -11,11 +11,11 @@ pipeline {
 
         stage("MAVEN BUILD") {
           steps {
-            dir('backoffice') {
+
 
             sh 'mvn clean install -Dmaven.test.skip=true'
                               }
-        }
+
 
 
     }
