@@ -1,0 +1,98 @@
+/* Dialog Title */
+.dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Dialog Content */
+.dialog-content {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.meeting-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Fields */
+.form-field {
+  margin-bottom: 20px;
+}
+
+/* Label Styling */
+.mat-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Input Fields */
+.mat-input-element, textarea {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.mat-input-element:focus, textarea:focus {
+  border-color: #007bff;
+}
+
+/* Button Styles */
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #ddd;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #e53935;
+}
+
+.submit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #dcdcdc;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #388e3c;
+}
+
+/* Checkbox Styles */
+.mat-checkbox-label {
+  font-size: 14px;
+  color: #444;
+}

@@ -1,0 +1,232 @@
+h1 {
+  color: #495057;
+}
+
+.container {
+  margin-left: 70px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 30px;
+}
+
+.mt {
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre les colonnes */
+}
+
+.col {
+  flex: 1;
+  margin: 20px;
+}
+
+.task-col {
+  .task {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    color: #495057;
+    box-shadow: 0 0.25rem 0.5rem #e6edef;
+    align-items: center; /* Alignement vertical au centre */
+
+    .bar {
+      width: 5px;
+      height: 45px;
+      border-radius: 15px;
+      margin-right: 15px;
+
+      &.completed {
+        background: rgb(50, 248, 60); /* Vert */
+      }
+
+      &.pending {
+        background: rgb(238, 139, 9); /* Orange */
+      }
+
+      &.todo {
+        background: rgb(255, 69, 58); /* Rouge */
+      }
+
+      &.total {
+        background: rgb(189, 189, 189); /* Gris */
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    color: #fff;
+    background-color: #556ee6;
+    padding: 12px 17px;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+  }
+}
+
+.welcome-card {
+  border-radius: 0.25rem;
+  max-width: 100%;
+
+  .welcome-head-container {
+    background-color: #556ee640;
+    color: #556ee6;
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+
+    .col-left {
+      flex: 0 0 auto;
+      width: 58.33333333%;
+
+      p {
+        font-size: 14px;
+        margin-top: 7px;
+        font-weight: normal;
+      }
+    }
+
+    .col-right {
+      flex: 0 0 auto;
+      width: 41.66666667%;
+
+      img {
+        width: 65%;
+        height: auto;
+      }
+    }
+  }
+
+  .welcome-body-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 75px;
+
+    .col-left {
+      flex: 0 0 auto;
+      width: 33.33333333%;
+
+      .avatar {
+        margin-top: -36px;
+        margin-bottom: 1.5rem;
+        height: 4.5rem;
+        width: 4.5rem;
+
+        img {
+          border-radius: 50%;
+          padding: 0.25rem;
+          background-color: #f8f8fb;
+          border: 1px solid #f6f6f6;
+          max-width: 100%;
+          height: auto;
+        }
+      }
+
+      .name {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #74788d;
+        font-size: 14px;
+      }
+    }
+
+    .col-right {
+      flex: 0 0 auto;
+      width: 66.66666667%;
+
+      .performance-container {
+        .performance {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #74788d;
+        }
+
+        .progress {
+          display: flex;
+          height: 7px;
+          overflow: hidden;
+          font-size: 0.75rem;
+          background-color: #e9ecef;
+          border-radius: 1rem;
+
+          .progress-bar {
+            height: 100%;
+            background-color: rgb(50, 248, 60); /* Vert */
+            border-radius: 1rem;
+            transition: width 0.6s ease;
+          }
+        }
+      }
+
+      .view-profile {
+        display: flex;
+        margin-top: 15px;
+        justify-content: flex-start;
+
+        button {
+          border: none;
+          outline: 0;
+          color: #556ee6;
+          background-color: #f6f6f6;
+          padding: 12px 17px;
+          border-radius: 5px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          box-shadow: 0 0.25rem 0.5rem #e6edef;
+        }
+      }
+    }
+  }
+}
+
+.project-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 0.25rem 0.5rem #e6edef;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+    .info-label {
+      font-weight: bold;
+      margin-right: 5px; /* Réduit l'espacement entre l'étiquette et la valeur */
+    }
+
+    .info-value {
+      color: #495057;
+    }
+  }
+}

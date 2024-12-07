@@ -1,0 +1,173 @@
+  .sidebar {
+      display: flex;
+      flex-direction: column;
+      //justify-content: flex-start; /* Positionne les éléments au début de la colonne */
+      align-items: flex-start; /* Aligne les éléments horizontalement à gauche */
+      height: 90vh;
+  }
+
+  .task-input {
+    position: relative;
+      width: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+      display: flex;
+      //justify-content: flex-start; /* Aligne le contenu à gauche */
+      margin-top: 110px;
+      padding-left: 100px;
+
+
+
+
+  }
+
+  mat-card {
+      width: 90%; /* Assure que la carte ne dépasse pas les bords */
+      max-width: 300px; /* Limite la largeur maximale pour une meilleure apparence */
+      height: auto; /* Ajuste la hauteur automatiquement en fonction du contenu */
+  }
+
+  mat-form-field {
+      width: 100%;
+      text-align: left; /* Aligne le texte à gauche */
+  }
+
+
+  .example-container {
+      width: 350px;
+      max-width: 100%;
+      margin: 0 25px 25px 25px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .example-list {
+      border: solid 1px #ddd; /* Bordure plus légère */
+      min-height: 60px;
+      background: #fafafa; /* Couleur de fond plus douce */
+      border-radius: 4px;
+      overflow: hidden;
+      display: block;
+      margin-top: 10px;
+  }
+
+
+  .example-box {
+    padding: 15px 10px;
+    border-bottom: solid 1px #ddd;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: #ffffff;
+    font-size: 14px;
+    border-radius: 4px; /* Coins arrondis */
+    transition: background-color 0.2s; /* Effet de survol fluide */
+}
+
+.example-box:hover {
+    background-color: #f0f0f0; /* Couleur de survol */
+}
+
+
+    .cdk-drag-preview {
+      box-sizing: border-box;
+      border-radius: 4px;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .cdk-drag-placeholder {
+      opacity: 0;
+    }
+
+    .cdk-drag-animating {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .example-box:last-child {
+      border: none;
+    }
+
+    .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .row {
+      display: flex; /* Utilise flexbox pour aligner les colonnes */
+      justify-content: flex-start; /* Aligne les colonnes à gauche */
+      align-items: flex-start; /* Aligne les colonnes en haut */
+  }
+
+  .box{
+      display: grid;
+      grid-auto-flow: column;
+      grid-column-gap : 10px;
+  }
+
+  .head-title {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #e0e0e0; /* Gris très clair */
+    border-radius: 4px;
+    color: #004d40; /* Vert sarcelle foncé */
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+  span {
+      font-weight: normal;
+  }
+  .list-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    flex-grow: 1;
+
+    .list-menu-item {
+      display: flex;
+      cursor: pointer;
+
+      align-items: center;
+      padding: 10px 15px;
+      border-radius: 5px;
+
+      width: 100%;
+      color: #5f5f5f;
+      margin-bottom: 5px;
+
+      &:hover {
+        background: #f0f0f0;
+      }
+
+
+    }
+  }
+  .download-pdf-button-container {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: flex-end;    /* Align towards the bottom (if desired) */
+    height: 100%;             /* Ensure container takes up full height */
+    padding-bottom: 20px;     /* Add some spacing from the bottom */
+  }
+
+  .download-pdf-button {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background-color: #ff4081; /* Adjust color */
+
+  }
+
+  .download-pdf-button mat-icon {
+    margin-right: 90px;
+  }
+
+  .download-pdf-button[disabled] {
+    background-color: lightgray;
+    cursor: not-allowed;
+  }

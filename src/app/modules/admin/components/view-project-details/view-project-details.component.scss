@@ -1,0 +1,188 @@
+/* Conteneur principal */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Liste des projets */
+.project-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Carte de projet */
+.project-card {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* Détails du projet */
+.project-details {
+    padding: 20px;
+}
+
+/* Nom du projet */
+.project-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Description du projet */
+.project-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Informations du projet */
+.project-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+/* Ligne d'information */
+.info-row {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* Étiquette d'information */
+.info-label {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+/* Valeur d'information */
+.info-value {
+    font-weight: 500;
+}
+
+/* Carte de commentaire */
+.comment-card {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-top: 20px;
+}
+
+/* Titre du commentaire */
+.comment-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Bouton de publication de commentaire */
+.publish-button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Section des commentaires */
+.comments-section {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+/* Article de commentaire */
+.comment-item {
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar du commentaire */
+.comment-avatar {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Adaptations pour petits écrans */
+@media screen and (max-width: 500px) {
+    .project-card, .comment-card {
+        max-width: 90%;
+    }
+
+    .project-name, .comment-title {
+        font-size: 18px;
+    }
+
+    .info-row {
+        flex: 1 1 100%;
+    }
+}
+.task-container {
+  margin-top: 20px;
+  display: flex; /* Enable horizontal alignment */
+  flex-wrap: wrap; /* Allow wrapping if necessary */
+  gap: 10px; /* Space between cards */
+
+  .task-card {
+    flex: 1 1 calc(33.33% - 20px); /* Three cards per row */
+    max-width: calc(33.33% - 20px); /* Prevents overflow */
+    margin: 0; /* Reset margins since gap is applied */
+    border-left: 5px solid transparent;
+
+    .task-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .task-info {
+      margin-top: 10px;
+
+      .task-status {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: inline-block;
+        color: white;
+
+        &.in-progress {
+          background-color: #2196f3; /* Blue */
+        }
+
+        &.done {
+          background-color: #4caf50; /* Green */
+        }
+
+        &.todo {
+          background-color: #f44336; /* Red */
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .task-card {
+    flex: 1 1 calc(50% - 10px); /* Two cards per row on smaller screens */
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .task-card {
+    flex: 1 1 100%; /* Single card per row on extra-small screens */
+    max-width: 100%;
+  }
+}

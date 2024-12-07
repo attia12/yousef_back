@@ -1,0 +1,61 @@
+<form class="search-form" [formGroup]="searchForm">
+    <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Enter Keyword to search</mat-label>
+        <input matInput formControlName="title" (input)="searchProject()">
+    </mat-form-field>
+</form>
+
+<div class="project-list">
+    <mat-card class="project-card" *ngFor="let project of listOfProjects">
+        <div class="project-details">
+            <h2 class="project-name">{{ project.title }}</h2>
+            <p class="project-description">{{ project.description }}</p>
+
+            <mat-divider></mat-divider>
+            <div class="project-info">
+                <div class="info-row">
+                    <span class="info-label">Due Date:</span>
+                    <span class="info-value">{{ project.dueDate | date: 'MMM d, y' }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Employee:</span>
+                    <span class="info-value">{{ project.employeeName }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Priority:</span>
+                    <span class="info-value">{{ project.priority }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value">{{ project.projectStatus }}</span>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+            <div class="actions">
+              <button mat-icon-button
+                      [ngClass]="{
+          'valid-button': project.isValid === 'true',
+          'not-valid-button': project.isValid === 'false'
+        }"
+                      (click)="validerProject(project.id)"
+                      [disabled]="project.isValid === 'true'">
+                <mat-icon>
+                  {{ project.isValid === 'true' ? 'check_circle' : 'highlight_off' }}
+                </mat-icon>
+                <span>{{ project.isValid === 'true' ? 'Validated' : 'Not Validated' }}</span>
+              </button>
+                <button mat-icon-button class="view-button" routerLink="/admin/project-details/{{project.id}}">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <a mat-icon-button class="update-button" [routerLink]="'/admin/project/' + project.id + '/edit'">
+                    <mat-icon>edit</mat-icon>
+                </a>
+                <button mat-icon-button class="delete-button" (click)="deleteProject(project.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+            </div>
+        </div>
+    </mat-card>
+</div>

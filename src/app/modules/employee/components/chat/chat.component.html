@@ -1,0 +1,29 @@
+<div class="chat-container">
+  <div class="chat-window">
+    <div
+      class="message"
+      *ngFor="let message of messages"
+      [ngClass]="{
+        'user-message': message.type === 'user',
+        'bot-message': message.type === 'admin'
+      }"
+    >
+      <strong>{{ message.type==="user"?'me':'admin' }}:</strong> {{ message.text }}
+    </div>
+  </div>
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type your message here..."
+    />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-header [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+</app-header>
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+</app-body>

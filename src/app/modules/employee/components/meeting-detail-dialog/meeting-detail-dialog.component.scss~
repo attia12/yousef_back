@@ -1,0 +1,12 @@
+mat-dialog-content {
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+button {
+  font-size: 1.1em;
+}

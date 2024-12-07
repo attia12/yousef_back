@@ -1,0 +1,101 @@
+/* Conteneur principal pour centrer la carte de connexion */
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: #f5f5f5; /* Couleur de fond légère pour un contraste doux */
+ }
+ 
+ mat-card {
+   max-width: 400px;
+   width: 100%;
+   padding: 20px;
+   border-radius: 8px; /* Coins arrondis pour un design moderne */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
+   background-color: #ffffff; /* Fond blanc pour la carte */
+   border: 1px solid #ddd; /* Bordure douce */
+ }
+ 
+ mat-card-title {
+   text-align: center;
+   font-size: 24px;
+   font-weight: 600; /* Gras pour plus de poids */
+   color: #333; /* Couleur sombre pour une meilleure lisibilité */
+   margin-bottom: 20px;
+ }
+ 
+ form {
+   display: flex;
+   flex-direction: column;
+   align-items: stretch; /* Remplir toute la largeur */
+ }
+ 
+ mat-form-field {
+   width: 100%;
+   margin-bottom: 20px;
+ }
+ 
+ button {
+   width: 100%;
+   padding: 12px;
+   border-radius: 5px; /* Coins arrondis pour les boutons */
+   font-size: 16px; /* Taille de police plus grande pour les boutons */
+   font-weight: 600; /* Gras pour le texte des boutons */
+ }
+ 
+ /* Bouton de connexion principal */
+ mat-raised-button {
+   background-color: #007bff; /* Couleur primaire bleue */
+   color: #fff; /* Texte blanc */
+   border: none; /* Enlever la bordure par défaut */
+   box-shadow: none; /* Enlever l'ombre par défaut */
+ }
+ 
+ mat-raised-button:hover {
+   background-color: #0056b3; /* Couleur au survol plus sombre */
+ }
+ 
+ /* Bouton Google */
+ .btn-google {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #fff; /* Fond blanc pour le bouton Google */
+   color: #333; /* Couleur du texte sombre */
+   border: 1px solid #ddd; /* Bordure douce */
+   border-radius: 5px; /* Coins arrondis pour le bouton */
+   font-size: 16px;
+   font-weight: 600;
+   padding: 12px;
+   margin-top: 20px; /* Marge pour séparer des autres éléments */
+ }
+ 
+ .btn-google img {
+   margin-right: 10px; /* Espacement entre l'icône et le texte */
+ }
+ 
+ .btn-google:hover {
+   background-color: #f1f1f1; /* Fond légèrement gris au survol */
+ }
+ 
+ /* Style pour les erreurs */
+ mat-error {
+   color: #f44336; /* Couleur rouge pour les messages d'erreur */
+ }
+ 
+ /* Ajustements pour les petits écrans */
+ @media screen and (max-width: 500px) {
+   mat-card-title {
+     font-size: 20px;
+   }
+ 
+   mat-form-field {
+     margin-bottom: 10px;
+   }
+ 
+   button {
+     font-size: 14px;
+   }
+ }
+ 

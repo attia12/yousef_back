@@ -1,0 +1,42 @@
+<div class="admin-container">
+  <!-- User List Panel -->
+  <div class="user-list">
+    <h3>Active Chats</h3>
+    <ul>
+      <li
+        *ngFor="let user of users"
+        (click)="selectUser(user)"
+        [class.selected]="user === selectedUser"
+      >
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="selectedUser">
+    <h3>Chat with {{ selectedUser.name }}</h3>
+    <div class="chat-messages">
+      <div
+        class="message"
+        *ngFor="let message of selectedUser.messages"
+        [ngClass]="{
+          'user-message': message.type !== 'admin',
+          'admin-message': message.type === 'admin'
+        }"
+      >
+        <strong>{{ message.type !== "admin" ? message.user : 'me' }}:</strong>
+        {{ message.text }}
+      </div>
+    </div>
+    <div class="chat-input">
+      <input
+        type="text"
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        placeholder="Type your message here..."
+      />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

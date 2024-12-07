@@ -1,0 +1,87 @@
+<div *ngIf="projectData" class="card-container">
+    <div class="project-list">
+        <mat-card class="project-card">
+            <div class="project-details">
+                <h2 class="project-name">{{ projectData.title }}</h2>
+                <p class="project-description">{{ projectData.description }}</p>
+
+                <mat-divider></mat-divider>
+                <div class="project-info">
+                    <div class="info-row">
+                        <span class="info-label">Due Date:</span>
+                        <span class="info-value">{{ projectData.dueDate | date: 'MMM d, y'}}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Employee:</span>
+                        <span class="info-value">{{ projectData.employeeName }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Priority:</span>
+                        <span class="info-value">{{ projectData.priority }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value">{{ projectData.projectStatus }}</span>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+  <h3  *ngIf="tasks.length > 0">Tasks for Employee: {{ projectData.employeeName }}</h3>
+
+  <div *ngIf="tasks.length > 0; else noTasksTemplate" class="task-container">
+
+
+    <mat-card *ngFor="let task of tasks" class="task-card">
+      <mat-card-content>
+        <h4 class="task-title">{{ task.title }}</h4>
+        <div class="task-info">
+          <div class="task-status" [ngClass]="getTaskStatusClass(task.type)">
+            <strong>Status:</strong> {{ task.type }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #noTasksTemplate>
+    <div class="no-tasks">
+      <mat-card>
+        <mat-card-content>
+          <div class="no-tasks-message">
+            <h4>No Tasks Found</h4>
+            <p>There are currently no tasks assigned for {{ projectData.employeeName }}.</p>
+            <mat-icon class="no-tasks-icon" fontIcon="task_alt"></mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+
+    <mat-card class="comment-card">
+        <mat-card-content>
+            <h4 class="comment-title">Publish Your Comment</h4>
+            <form [formGroup]="commentForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Content</mat-label>
+                    <textarea matInput formControlName="content" placeholder="Please write your comment here..."></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="publish-button" [disabled]="!commentForm.valid"
+                    (click)="publishComment()">Publish Comment</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="comments-section">
+        <h4></h4>
+        <mat-card *ngFor="let comment of comments" class="comment-item">
+            <mat-card-header>
+                <div mat-card-avatar class="comment-avatar"></div>
+                <mat-card-title>{{ comment.postedBy }}</mat-card-title>
+                <mat-card-subtitle>{{ comment.createdAt | date:'medium' }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ comment.content }}
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

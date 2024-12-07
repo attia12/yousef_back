@@ -1,0 +1,30 @@
+/* Style pour la barre de navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+  }
+  
+  /* Style pour le logo ou le texte de la marque */
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white; /* Couleur du texte */
+  }
+  
+  /* Style pour les boutons de navigation */
+  .mat-button {
+    color: white; /* Couleur du texte des boutons */
+  }
+  
+  /* Style pour l'espaceur */
+  .spacer {
+    flex-grow: 1;
+  }
+  
+  /* Style pour l'élément actif */
+  .active {
+    font-weight: bold; /* Police en gras pour indiquer l'élément actif */
+  }
+  

@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Schedule a Meeting</h1>
+<div mat-dialog-content>
+  <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="employeeId">
+        <mat-option *ngFor="let employee of employees" [value]="employee.id">
+          {{ employee.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="meetingForm.controls['employeeId'].hasError('required')">
+        Employee is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="meetingForm.controls['description'].hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Meeting Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="meetingForm.controls['date'].hasError('required')">
+        Date and Time are required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Meeting Time</mat-label>
+      <input matInput type="time" formControlName="time" placeholder="Choose a time">
+      <mat-error *ngIf="meetingForm.controls['time'].hasError('required')">
+        Time is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="isOnline" >Online Meeting</mat-checkbox>
+
+    <mat-form-field *ngIf="meetingForm.controls['isOnline'].value">
+      <mat-label>Meeting Link</mat-label>
+      <input matInput formControlName="meetLink" placeholder="Enter meeting link">
+      <mat-error *ngIf="meetingForm.controls['meetLink'].hasError('required')">
+        Meeting link is required for online meetings
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="meetingForm.value" (click)="onSubmit()" [disabled]="!meetingForm.valid">Submit</button>
+</div>

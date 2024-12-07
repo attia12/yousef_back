@@ -1,0 +1,26 @@
+<!--<h2 mat-dialog-title>Meeting Details</h2>-->
+<!--<mat-dialog-content>-->
+<!--  <p><strong>Description:</strong> {{ data.title }}</p>-->
+<!--  <p><strong>Date:</strong> {{ data.start | date: 'fullDate' }}</p>-->
+<!--  <p><strong>Time:</strong> {{ data.start | date: 'shortTime' }}</p>-->
+<!--  <p><strong>Location:</strong> {{ data.nline ? 'Online' : 'Offline' }}</p>-->
+<!--  <p *ngIf="data.isOnline"><strong>Meeting Link:</strong> <a [href]="data.meetLink" target="_blank">{{ data.meetLink }}</a></p>-->
+<!--</mat-dialog-content>-->
+<!--<mat-dialog-actions>-->
+<!--  <button mat-button [mat-dialog-close]="true">Close</button>-->
+<!--</mat-dialog-actions>-->
+<h2 mat-dialog-title class="dialog-title">Meeting Details</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="meeting-detail">
+    <p><strong>Description:</strong> {{ data.title }}</p>
+    <p><strong>Date:</strong> {{ data.start | date: 'fullDate' }}</p>
+    <p><strong>Time:</strong> {{ data.start | date: 'shortTime' }}</p>
+    <p><strong>Location:</strong> {{ data.nline ? 'Online' : 'Offline' }}</p>
+    <p *ngIf="data.isOnline"><strong>Meeting Link:</strong> <a [href]="data.meetLink" target="_blank" class="meeting-link">{{ data.meetLink }}</a></p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button [mat-dialog-close]="true" class="close-btn">Close</button>
+</mat-dialog-actions>

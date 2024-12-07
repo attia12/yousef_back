@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="card welcome-card">
+    <div class="card-head welcome-head-container">
+      <div class="col-left">
+        <div>{{ selectedLanguage ? 'Bienvenue !' : 'Welcome Back !' }}</div>
+        <p>{{ selectedLanguage ? 'Tableau de bord' : 'Dashboard' }}</p>
+      </div>
+      <div class="col-right">
+        <!-- Ajoutez ici si nécessaire -->
+      </div>
+    </div>
+    <div class="card-body welcome-body-container">
+      <div class="col-left">
+        <div class="avatar" (click)="fileInput.click()">
+          <img [src]="selectedPicture || (user.image ? 'data:image/jpg;base64,' + user.image : 'assets/youssef.jpg')" alt="..." />
+        </div>
+        <div class="name">{{ user?.name }}</div>
+        <p>{{ user?.userRole }}</p>
+      </div>
+      <div class="col-right">
+        <div class="performance-container">
+          <div class="performance">
+            <div>{{ selectedLanguage ? 'Performance' : 'Performance' }}</div>
+            <div>{{ perfer }}%</div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" [style.width.%]="perfer"></div>
+          </div>
+        </div>
+        <div class="view-profile">
+          <button>
+            {{ selectedLanguage ? 'Voir Profil' : 'View Profile' }}
+            <i class="far fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col task-col">
+      <div class="card">
+        <div class="card-head">{{ selectedLanguage ? 'Statistiques des Tâches' : 'Task Stats' }}:</div>
+        <div class="card-body">
+          <canvas id="canvas"> {{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col task-col">
+      <div class="card">
+        <div class="card-head">{{ selectedLanguage ? 'Statistiques des Projets' : 'Projects Stats' }}:</div>
+        <div class="card-body">
+          <canvas id="canvas2"> {{ chart2 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col task-col mt">
+      <div class="task">
+        <span class="bar completed"></span>
+        <div class="details">
+          <div>{{ selectedLanguage ? 'Completé' : 'Completed' }}</div>
+          <p>{{ done }} {{ selectedLanguage ? 'tâches' : 'tasks' }}</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <span class="bar pending"></span>
+        <div class="details">
+          <div>{{ selectedLanguage ? 'En Attente' : 'Pending' }}</div>
+          <p>{{ inprogress }} {{ selectedLanguage ? 'tâches' : 'tasks' }}</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <span class="bar todo"></span>
+        <div class="details">
+          <div>{{ selectedLanguage ? 'A Faire' : 'To Do' }}</div>
+          <p>{{ tasks }} {{ selectedLanguage ? 'tâches' : 'tasks' }}</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <span class="bar total"></span>
+        <div class="details">
+          <div>{{ selectedLanguage ? 'Total' : 'Total' }}</div>
+          <p>{{ total }} {{ selectedLanguage ? 'tâches' : 'tasks' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">{{ selectedLanguage ? 'Liste Des Projets' : 'List Of Projects' }} :</div>
+    <div class="card-body">
+      <div *ngFor="let project of projects" class="project-card">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <div class="info-row">
+          <span class="info-label">{{ selectedLanguage ? 'Date d écheance' : 'Due Date' }}:</span>
+          <span class="info-value">{{ project.dueDate | date : "MMM d, y" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">{{ selectedLanguage ? 'Priorité' : 'Priority' }}:</span>
+          <span class="info-value">{{ project.priority }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+<input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none;" />
+
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-header [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-header>
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
