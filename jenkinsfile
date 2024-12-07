@@ -43,7 +43,7 @@ pipeline {
                                     steps {
 
 
-                                      sh 'docker build -t task:latest .'
+                                      sh 'docker build -t achrafbouslama/task:latest .'
                                     }
                                   }
                               stage('docker push backend'){
