@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Task_Management</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>Task_Management</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
