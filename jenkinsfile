@@ -51,7 +51,7 @@ pipeline {
 
                                                    script{
                                                        sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
-                                                       sh 'docker push task:latest'
+                                                       sh 'docker push achrafbouslama/task:latest'
 
                                                    }
 
