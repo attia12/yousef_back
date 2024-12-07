@@ -30,16 +30,18 @@ pipeline {
                           }
                      }
                  }
-             stage('Publish Artifacts to Nexus') {
-                           steps {
-
-                                   script {
-                                       sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8081/repository/spring/'
-                                   }
-
-                           }
+           stage('Publish Artifacts to Nexus') {
+               steps {
+                   withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
+                       sh """
+                           mvn deploy \
+                               -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8081/repository/spring/ \
+                               -Dnexus.username=$NEXUS_USER \
+                               -Dnexus.password=$NEXUS_PASSWORD
+                       """
+                   }
                }
-
+           }
 
     }
 
