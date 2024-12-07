@@ -137,7 +137,11 @@
 			<name>Nexus Repository</name>
 			<url>http://192.168.1.17:8081/repository/spring/</url>
 		</repository>
+
+
 	</distributionManagement>
+
+
 
 	<build>
 		<pluginManagement>
