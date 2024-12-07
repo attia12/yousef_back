@@ -39,6 +39,23 @@ pipeline {
 
                             }
                 }
+                  stage("BUILD DOCKER IMAGE") {
+                                    steps {
+
+
+                                      sh 'docker build -t task:latest .'
+                                    }
+                                  }
+                              stage('docker push backend'){
+                                               steps{
+
+                                                   script{
+                                                       sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
+                                                       sh 'docker push task:latest'
+
+                                                   }
+
+                                           }}
 
     }
 
