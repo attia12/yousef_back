@@ -12,7 +12,7 @@ services:
       - test
     volumes:
       - db:/var/lib/mysql
-  SopraHRWork:
+  Task_Management:
     depends_on:
       - mysqldb
     image: task:latest
