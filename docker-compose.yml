@@ -31,6 +31,12 @@ services:
           }'
       stdin_open: true
       tty: true
+  angular-app:
+
+      ports:
+        - "4200:80"
+      networks:
+        - test
 
 networks:
   test:

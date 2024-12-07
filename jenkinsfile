@@ -46,22 +46,51 @@ pipeline {
                                       sh 'docker build -t achrafbouslama/task:latest .'
                                     }
                                   }
-                              stage('docker push backend'){
-                                               steps{
-
-                                                   script{
+                  stage('docker push backend'){
+                                    steps{
+                                         script{
                                                        sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
                                                        sh 'docker push achrafbouslama/task:latest'
 
                                                    }
 
                                            }}
+                                           stage('Checkout Frontend Code') {
+                                                       steps {
+
+                                                           script {
+
+                                                               git branch: 'frontend', url: 'https://github.com/attia12/yousef_back.git'
+                                                           }
+                                                       }
+                                                   }
+                                                   stage('Build Frontend Docker Image') {
+                                                               steps {
+
+                                                                   script {
+
+                                                                       sh 'docker build -t achrafbouslama/angular-app:latest .'
+                                                                   }
+                                                               }
+                                                           }
+
+                                                           stage('Push Frontend Image') {
+                                                                       steps {
+
+                                                                           sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
+                                                                           sh 'docker push achrafbouslama/angular-app:latest'
+                                                                       }
+                                                                   }
+
+
                                             stage('docker compose') {
                                                                      steps{
 
                                                                          sh 'docker compose up -d'
                                                                      }
                                                                  }
+
+
 
 
     }
