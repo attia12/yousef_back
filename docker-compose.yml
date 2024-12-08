@@ -32,7 +32,7 @@ services:
       stdin_open: true
       tty: true
   angular-app:
-
+      image: achrafbouslama/angular-app:latest
       ports:
         - "4200:80"
       networks:
