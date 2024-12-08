@@ -1,25 +1,26 @@
 events {}
+
 http {
     server {
         listen 80;
 
+        # Serve Angular app
         location / {
             root /usr/share/nginx/html;
             index index.html;
-            try_files $uri $uri/ /index.html;
+            try_files $uri $uri/ /index.html;  # Important for Angular's routing
         }
 
-        # Handle JavaScript | CSS files with the correct MIME type
-        location ~ \.(js|css)$ {
+        # Serve static files like JS, CSS, etc.
+        location ~ \.(js|css|woff|woff2|ttf|eot|svg|otf)$ {
             root /usr/share/nginx/html;
             include /etc/nginx/mime.types;
         }
 
-        # Catch-all location to handle refreshes on any route
-        location ~ ^/.+$ {
+        # Error handling
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
             root /usr/share/nginx/html;
-            index index.html;
-            try_files $uri /index.html;
         }
     }
 }
