@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Récupération du code de la branche') {
             steps {
                 git branch: 'master', url: 'https://github.com/attia12/yousef_back.git'
@@ -13,76 +14,89 @@ pipeline {
                 sh 'mvn clean install -Dmaven.test.skip=true'
             }
         }
+         stage("MOCKITO") {
+                      steps {
 
-        stage("MOCKITO") {
-            steps {
-                sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
-            }
-        }
+                        sh "mvn test -Dtest=com.example.Task_Management.ProjectServiceTest"
+                      }
+                    }
+         stage('SonarQube') {
+                     steps {
 
-        stage('SonarQube') {
-            steps {
-                withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                         // Provide SonarQube authentication using the provided token
+                         withCredentials([string(credentialsId: 'scanner', variable: 'SONAR_TOKEN')]) {
+                             sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+
+                          }
+                     }
+                 }
+             stage('Publish Artifacts to Nexus') {
+                            steps {
+
+                                    script {
+                                        sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8081/repository/spring/'
+                                    }
+
+                            }
                 }
-            }
-        }
+                  stage("BUILD DOCKER IMAGE") {
+                                    steps {
 
-        stage('Publish Artifacts to Nexus') {
-            steps {
-                script {
-                    sh 'mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8081/repository/spring/'
-                }
-            }
-        }
 
-        stage("BUILD DOCKER IMAGE") {
-            steps {
-                sh 'docker build -t achrafbouslama/task:latest .'
-            }
-        }
+                                      sh 'docker build -t achrafbouslama/task:latest .'
+                                    }
+                                  }
+                  stage('docker push backend'){
+                                    steps{
+                                         script{
+                                                       sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
+                                                       sh 'docker push achrafbouslama/task:latest'
 
-        stage('docker push backend') {
-            steps {
-                script {
-                    sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
-                    sh 'docker push achrafbouslama/task:latest'
-                }
-            }
-        }
+                                                   }
 
-        stage('Checkout Frontend Code') {
-            steps {
-                script {
-                    git branch: 'frontend', url: 'https://github.com/attia12/yousef_back.git'
-                }
-            }
-        }
+                                           }}
+                                           stage('Checkout Frontend Code') {
+                                                       steps {
 
-        stage('Build Frontend Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t achrafbouslama/angular-app:latest .'
-                }
-            }
-        }
+                                                           script {
 
-        stage('Push Frontend Image') {
-            steps {
-                sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
-                sh 'docker push achrafbouslama/angular-app:latest'
-            }
-        }
+                                                               git branch: 'frontend', url: 'https://github.com/attia12/yousef_back.git'
+                                                           }
+                                                       }
+                                                   }
+                                                   stage('Build Frontend Docker Image') {
+                                                               steps {
 
-        stage('docker compose') {
-            steps {
-                script {
-                    // Vérifie le répertoire et s'il y a un fichier docker-compose.yml
-                    sh 'pwd'
-                    sh 'ls -l'
-                    sh 'docker compose up -d'  // ou 'docker-compose up -d' selon la version
-                }
-            }
-        }
+                                                                   script {
+
+                                                                       sh 'docker build -t achrafbouslama/angular-app:latest .'
+                                                                   }
+                                                               }
+                                                           }
+
+                                                           stage('Push Frontend Image') {
+                                                                       steps {
+
+                                                                           sh 'docker login -u "achrafbouslama" -p "e181JMT2239#" docker.io'
+                                                                           sh 'docker push achrafbouslama/angular-app:latest'
+                                                                       }
+                                                                   }
+
+
+                                            stage('docker compose') {
+                                                                     steps{
+                                                                      script {
+                                                                       git branch: 'master', url: 'https://github.com/attia12/yousef_back.git'
+
+
+                                                                         sh 'docker compose up -d'
+                                                                     }
+                                                                     }
+                                                                 }
+
+
+
+
     }
+
 }
