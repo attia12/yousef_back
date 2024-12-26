@@ -135,7 +135,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://192.168.4.99:8081/repository/spring/</url>
+			<url>http://192.168.33.10:8081/repository/spring/</url>
 		</repository>
 
 
